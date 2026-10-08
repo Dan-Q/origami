@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Origami (Weird Web October 2026)</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta property="og:url" content="https://origami.danq.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://origami.danq.dev/origami-og.png">
+    <meta property="og:title" content="Origami (Weird Web October 2026)">
+    <meta property="og:description" content="Share your love of the (weird) world wide web by folding something special for (and on) it.">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="description" content="Share your love of the (weird) world wide web by folding something special for (and on) it.">
+    <!-- <link rel="preload" as="fetch" href="https://octothorp.es/?uri=https://origami.danq.dev/"> -->
+    <link rel="octo:octothorpes" href="weirdweboctober" >
+    <link rel="octo:octothorpes" href="Origami" >
+    <style>
+      /* Essentials */
+      * {
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: 'Raleway';
+        src: local(''), url('https://bcdn.danq.me/_q26tf/rv.woff2') format('woff2');
+        font-display: swap;
+        font-feature-settings: "lnum";
+      }
+
+      @property --max-pc-size {
+        syntax: "<number>";
+        inherits: true;
+        initial-value: 65;
+      }
+
+      :root {
+        --start-max-pc-size: 65;
+        --end-max-pc-size: 85;
+        --max-pc-size: var(--start-max-pc-size);
+        --size: min(calc(1vw * var(--max-pc-size)), calc(1vh * var(--max-pc-size)));
+        --paper-front: #d62839;
+        --paper-rear: #ffffff;
+        --guide-ink-color: #222222;
+      }
+
+      body {
+        margin: 0;
+        background: #bca38f url('data:image/webp;base64,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a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAxNCA3OS4xNTE0ODEsIDIwMTMvMDMvMTMtMTI6MDk6MTUgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA4MjMzRTBBOTkwMjExRTM4ODMyOTYwMkFBNDQxMTcwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA4MjMzRTA5OTkwMjExRTM4ODMyOTYwMkFBNDQxMTcwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RThERTYxOUFGREJCMTFFMDlFMjhBOTBCMkQ3NzBDODMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RThERTYxOUJGREJCMTFFMDlFMjhBOTBCMkQ3NzBDODMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4=');
+        backdrop-filter: blur(2px);
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        font-family: 'Raleway';
+      }
+
+      /* Paper */
+
+      .stage {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: var(--size);
+        height: var(--size);
+        margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+        perspective: 2500px;
+        --max-pc-size: var(--start-max-pc-size);
+        --size: min(calc(1vw * var(--max-pc-size)), calc(1vh * var(--max-pc-size)));
+        transition: --max-pc-size 1s ease-in-out;
+
+        &.zoomed { /* for when we need to get a little closer! */
+          --max-pc-size: var(--end-max-pc-size);
+        }
+      }
+
+      .sheet {
+        --fold: 0;
+        --flip: 0deg;
+        --rot: 0deg;
+        --hinge: 1;
+        position: absolute;
+        inset: 0;
+        transform-style: preserve-3d;
+        transform: rotate(var(--rot)) rotateY(var(--flip));
+      }
+
+      .plane {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        transform-style: preserve-3d;
+      }
+
+      .sheet > .plane,
+      .overlay {
+        left: 0;
+        top: 0;
+      }
+
+      .overlay {
+        transform-style: flat;
+        pointer-events: none;
+      }
+
+      .hinge,
+      .folder,
+      .carrier {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        transform-style: preserve-3d;
+      }
+
+      .folder {
+        transform: rotateX(calc(var(--fold) * 180deg));
+      }
+
+      .face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+
+        svg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        line {
+          vector-effect: non-scaling-stroke;
+          stroke-linecap: round;
+        }
+
+        .edge {
+          stroke: rgba(0, 0, 0, 0.3);
+          stroke-width: 2px;
+        }
+
+        .hinge-edge {
+          stroke: rgba(0, 0, 0, 0.3);
+          stroke-width: 2px;
+          opacity: var(--hinge);
+        }
+
+        .crease {
+          stroke: rgba(0, 0, 0, 0.28);
+          stroke-width: 1.5px;
+        }
+      }
+
+      /* Overlay "guides" */
+
+      #guide {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+
+        line {
+          stroke: var(--guide-ink-color);
+          stroke-width: 4;
+          stroke-dasharray: 2 10;
+          stroke-linecap: round;
+        }
+
+        #g-arrow path {
+          fill: var(--guide-ink-color);
+          stroke: var(--guide-ink-color);
+          stroke-width: 1;
+          stroke-linejoin: round;
+        }
+
+        .start,
+        .finger {
+          fill: var(--guide-ink-color);
+          stroke: var(--guide-ink-color);
+          stroke-width: 3;
+          transform-box: fill-box;
+          transform-origin: center;
+        }
+
+        .start {
+          animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        .end {
+          fill: none;
+          stroke: var(--guide-ink-color);
+          stroke-width: 3;
+          stroke-dasharray: 6 6;
+        }
+
+        &.hidden {
+          display: none;
+        }
+
+        .start, line {
+          transition: opacity 0.1s
+        }
+
+        &.dragging {
+          .start {
+            opacity: 0;
+          }
+
+          line {
+            opacity: 0.35;
+          }
+        }
+      }
+
+      /* Hide the cursor while dragging (.finger becomes the cursor!) */
+      body:has(.dragging), body:has(.dragging) * {
+        cursor: none !important;
+      }
+
+      @keyframes pulse {
+        50% {
+          transform: scale(1.15);
+        }
+      }
+
+      /* Instructions */
+
+      #instruction {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 18px 16px;
+        text-align: center;
+        pointer-events: none;
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          gap: 0.25vw;
+
+          li {
+            display: block;
+            width: clamp(9px, 1.5vw, 14px);
+            height: clamp(9px, 1.5vw, 14px);
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid #222;
+
+            &.done {
+              background: #444;
+              border-color: #444;
+            }
+
+            &.current {
+              background: black;
+              border-color: black;
+            }
+          }
+        }
+
+        p {
+          display: block;
+          font-size: 0.55em;
+          opacity: 0.8;
+          margin-bottom: 4px;
+          font-size: clamp(18px, 3vw, 28px);
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+          color: #fff;
+        }
+
+        button {
+          pointer-events: auto;
+          margin-top: 12px;
+          font: inherit;
+          font-size: 0.6em;
+          padding: 6px 16px;
+          border: 0;
+          border-radius: 999px;
+          cursor: pointer;
+        }
+      }
+
+      /* "About" button and box */
+
+      #about-button {
+        position: absolute;
+        bottom: 1vw;
+        left: 1vw;
+        border-radius: 50%;
+        width: max(45px, min(6vw, 6vh));
+        height: max(45px, min(6vw, 6vh));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: min(0.75vw, 0.75vh);
+        cursor: pointer;
+      }
+
+      #about {
+        position: fixed;
+        top: 8vh;
+        width: min(84vw,900px);
+        height: 84vh;
+        margin: 0 auto;
+        box-shadow: 8px 8px 24px #0007;
+        overflow: auto;
+        text-align: left;
+        user-select: text;
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.3;
+        padding: 1ch;
+
+        * {
+          margin: 0;
+        }
+
+        h1 {
+          text-align: center;
+        }
+
+        &:popover-open {
+          display: flex;
+        }
+      }
+
+      ::backdrop {
+        background: #0003;
+        backdrop-filter: blur(4px);
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="stage">
+        <div class="sheet" id="sheet"></div>
+      </div>
+
+      <svg id="guide">
+        <defs>
+          <marker id="g-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+            <path d="M 1 1 L 9 5 L 1 9 Z" />
+          </marker>
+        </defs>
+        <line id="g-line" marker-end="url(#g-arrow)" />
+        <circle class="end" id="g-end" />
+        <circle class="start" id="g-start" />
+        <circle class="finger" id="g-finger" style="display: none" />
+      </svg>
+
+      <div id="instruction"></div>
+    </main>
+
+    <button id="about-button" aria-label="About" popovertarget="about"><svg viewBox="-19 0 124 124" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g clip-path="url(#clip0)"><path d="M66.9413 6.80024C59.1446 2.43766 50.3245 0.277133 41.4114 0.546415C33.6617 0.308912 25.9438 1.64708 18.7181 4.48125C12.0212 7.16705 7.11762 10.8027 3.73179 15.5952C2.58277 17.3085 1.79652 19.2423 1.42204 21.2758C0.97128 23.5617 1.7923 25.2296 3.67583 25.8522C5.85814 26.5728 7.23824 25.1582 8.4057 23.5228L8.82169 22.9385C10.1179 21.1077 11.4584 19.2152 13.1488 17.9545C15.7556 16.0268 18.6039 14.4551 21.6193 13.2801C28.0755 10.7638 35.2167 9.95614 44.0928 10.7417C50.2398 11.2857 55.4312 12.7133 59.9633 15.1056C66.4404 18.5244 70.5686 22.8625 72.5848 28.3679C75.4394 36.1682 73.865 42.4267 67.9047 46.9699C64.5038 49.4399 60.9478 51.6851 57.2593 53.6917L57.0866 53.7904C55.3042 54.811 53.4087 55.7231 51.5754 56.6054C50.2875 57.2254 48.9544 57.8675 47.6633 58.5446C38.7931 63.1962 32.6943 69.339 29.0187 77.3231C28.0815 79.2688 27.4163 81.3352 27.0419 83.4647C26.7751 85.0929 26.8451 86.7588 27.2472 88.3584C27.6494 89.9574 28.3749 91.4558 29.3787 92.7595C30.3774 94.0916 31.4057 94.378 32.0928 94.3825H32.1129C32.5959 94.363 33.0677 94.2306 33.4907 93.9943C33.9137 93.7586 34.276 93.4262 34.5487 93.0237C35.0787 92.3394 35.6177 91.6603 36.1586 90.9819C37.5836 89.1849 39.0565 87.3268 40.3515 85.3785C44.398 79.2837 49.9011 74.3075 57.6696 69.7175C62.4729 66.9668 67.1332 63.9695 71.6324 60.7377C74.789 58.4139 77.6243 55.6764 80.0629 52.5972C85.1732 46.0616 86.8635 38.6007 85.0863 30.4212C82.8833 20.3058 76.7788 12.3601 66.9413 6.80024Z" fill="#000000"></path><path d="M30.0332 123.356C30.5839 123.438 31.1398 123.48 31.6965 123.479C34.3927 123.446 37.0093 122.554 39.1723 120.931C41.3352 119.308 42.9333 117.037 43.738 114.442C44.2238 112.472 44.2537 110.416 43.8254 108.432C43.3971 106.449 42.5221 104.591 41.2679 103.003C40.3147 101.695 39.0606 100.641 37.6134 99.9325C36.1662 99.2229 34.5695 98.8795 32.9612 98.9308C30.8239 98.9379 30.4738 99.0873 26.9591 101.159C24.5168 102.527 22.6082 104.692 21.5469 107.297C20.4857 109.903 20.3345 112.795 21.1184 115.499C22.4288 120.022 25.4291 122.665 30.0332 123.356ZM31.4931 106.086C31.6863 106.346 31.8793 106.59 32.066 106.831C32.6296 107.467 33.0916 108.188 33.4356 108.968C33.8303 110.059 33.9134 111.24 33.6752 112.377C33.4679 112.932 33.0586 113.386 32.5304 113.648C31.8288 114.105 30.9879 114.294 30.16 114.182C29.7343 114.067 28.4395 113.715 28.5278 111.157C28.6224 108.422 29.4898 106.917 31.4938 106.082L31.4931 106.086Z" fill="#000000"></path></g><defs><clipPath id="clip0"><rect width="85" height="124" fill="white" transform="translate(0.777344)"></rect></clipPath></defs></g></svg></button>
+    <aside id="about" popover>
+      <h1>❤️ Origami ❤️</h1>
+      <h2>What am I looking at?</h2>
+      <p>
+        👋 Hi; I'm <a href="https://danq.me/">Dan Q</a>, and this is my contribution to day 14 of
+        <a href="https://weirdweboctober.website/">Weird Web October</a> 2026.
+      </p>
+      <p>
+        I recently learned how to fold an origami paper heart and thought I'd share it with you... interactively! The (weird) world wide web
+        is wonderful, and I wanted to celebrate my love of it with a big heart. <small>(Some assembly required.)</small>
+      </p>
+      <p>
+        If you have difficulty with the touch-and-drag/click-and-drag interface, it's also possible to advance through the stages by pressing
+        the space bar on your keyboard.
+      </p>
+      <h2>Credit where it's due</h2>
+      <p>
+        Mad props to <a href="https://pippinbarr.com/">Pippin Barr</a> for the
+        <a href="https://pippinbarr.com/ideas/it-is-as-if/">it is as if" interface</a> used in, for example,
+        <a href="https://pippinbarr.com/it-is-as-if-you-were-playing-chess/info/" style="font-style: italic;">It is as if you were playing chess</a>, which inspired my "arrows".
+      </p>
+      <p>
+        Shout out to <a href="https://origami.me/">origami.me</a> for helping me double-check that there wasn't some easier/better way to do
+        this particular bit of origami.
+      </p>
+      <p>
+        Big love to <a href="https://swetzel.com/">Sebastian Wetzel</a> for <a href="https://confettijs.org/">ConfettiJS</a>, which I
+        slightly-adapted for the end-of-folding confetti effect.
+      </p>
+    </aside>
+
+    <script>
+      /* Let's just put these here for later... */
+      const guide = document.getElementById('guide');
+      const gLine = document.getElementById('g-line');
+      const gStart = document.getElementById('g-start');
+      const gEnd = document.getElementById('g-end');
+      const gFinger = document.getElementById('g-finger');
+      const instruction = document.getElementById('instruction');
+      const bodyComputedStyle = window.getComputedStyle(document.body);
+      const paperFront = bodyComputedStyle.getPropertyValue('--paper-front');
+      const paperRear = bodyComputedStyle.getPropertyValue('--paper-rear');
+      const confettiInitialFrequency = 45000;
+      let confettiFrequency = confettiInitialFrequency;
+
+      let index = 0;
+      let progress = 0;
+      let dragging = false;
+      let animating = false;
+      let confettiBuildup = confettiFrequency;
+      let confettiRaf = 0; // pending requestAnimationFrame id while the cannon is armed
+
+      /* ConfettiJS 2.2.0 (https://confettijs.org), with the following modifications:
+       * 1. canvas z-index changed to -1 so it sits "behind" the model
+       * 2. added an 'upwardness:' option; a probability that "downwards" confetti will get flipped "up" (throwiness!)
+       */
+      (()=>{var b={count:75,size:1,velocity:200,fade:!1,upwardness:0},h=class{static init(t){return{position:{x:window.innerWidth/2,y:window.innerHeight/3},...b,...t}}};var e=class{static range(t,i){return Math.random()*(i-t)+t}};var s=class n{x;y;constructor(t=0,i=0){this.x=t,this.y=i}copy(){return new n(this.x,this.y)}magnitude(){return Math.hypot(this.x,this.y)}normalize(){let t=this.magnitude();if(t===0)return this.x=0,this.y=0,this;let i=1/t;return this.x*=i,this.y*=i,this}scale(t){return this.x*=t,this.y*=t,this}};var c=class{config;position;size;velocity;rotation;rotationSpeed;color;opacity;fadeRate;constructor(t){this.config=t,this.position=this.initPosition(),this.size=this.initSize(),this.velocity=this.initVelocity(),this.rotation=e.range(0,360),this.rotationSpeed=e.range(-250,250),this.color=this.initColor(),this.opacity=100,this.fadeRate=100/e.range(.5,2.5)}initPosition(){let t=this.config.position.x,i=this.config.position.y;return new s(t,i)}initSize(){let t=e.range(2,10)*this.config.size,i=e.range(2,4)*this.config.size;return new s(t,i)}initVelocity(){let t=e.range(-.5,.5),i=e.range(-.75,.25),r=new s(t,i).normalize();return this.config.upwardness>0&&r.y>0&&Math.random()<=this.config.upwardness&&(r.y=-r.y),r.x*=e.range(0,this.config.velocity*4),r.y*=e.range(0,this.config.velocity*4),r}initColor(){if(this.config.color&&this.config.color.length>0){let t=Math.floor(e.range(0,this.config.color.length));return this.config.color[t]}else return e.range(0,360)}update(t,i){this.velocity.x+=e.range(-350,350)*t,this.velocity.y+=75*this.size.y*t,this.velocity.scale(i),this.position.x+=this.velocity.x*t,this.position.y+=this.velocity.y*t,this.rotation+=this.rotationSpeed*t,this.config.fade&&(this.opacity-=this.fadeRate*t,this.opacity<0&&(this.opacity=0))}draw(t){t.drawRect(this.position,this.size,this.rotation,this.color,this.opacity)}cull(t){let i=Math.max(this.size.x,this.size.y)*2;return this.position.y>t.height+i||this.opacity<=0}};var d=class{canvas;context;dpr;rafId;boundResize;constructor(){let t=document.createElement("canvas"),i=t.getContext("2d");if(!i)throw new Error("Unable to create 2d context");this.canvas=t,this.context=i,this.dpr=Math.max(1,window.devicePixelRatio||1),this.rafId=0,this.boundResize=this.resize.bind(this),this.resize(),window.addEventListener("resize",this.boundResize),t.style.position="fixed",t.style.top="0",t.style.left="0",t.style.width="100%",t.style.height="100%",t.style.margin="0",t.style.padding="0",t.style.zIndex="-1",t.style.pointerEvents="none",document.body.appendChild(t),this.context.imageSmoothingEnabled=!0}resize(){this.rafId&&cancelAnimationFrame(this.rafId),this.rafId=requestAnimationFrame(()=>{let{innerWidth:t,innerHeight:i}=window;this.canvas.width=Math.round(t*this.dpr),this.canvas.height=Math.round(i*this.dpr),this.canvas.style.width=`${t}px`,this.canvas.style.height=`${i}px`,this.context.setTransform(this.dpr,0,0,this.dpr,0,0),this.context.imageSmoothingEnabled=!0,this.rafId=0})}get width(){return this.canvas.width/this.dpr}get height(){return this.canvas.height/this.dpr}clear(){this.context.clearRect(0,0,this.canvas.width,this.canvas.height)}drawRect(t,i,r,a,o){let f=r*Math.PI/180,u=Math.cos(f),m=Math.sin(f),g=i.x*this.dpr,v=i.y*this.dpr,y=t.x*this.dpr,x=t.y*this.dpr;this.context.setTransform(u,m,-m,u,y,x),this.context.beginPath(),this.context.rect(-g/2,-v/2,g,v),this.context.fillStyle=typeof a=="string"?`oklch(from ${a} l c h / ${o}%)`:`oklch(0.85 0.25 ${a}deg / ${o}%)`,this.context.fill(),this.context.setTransform(this.dpr,0,0,this.dpr,0,0)}cleanup(){window.removeEventListener("resize",this.boundResize),this.rafId&&cancelAnimationFrame(this.rafId),this.canvas.remove()}};var p=class n{renderer;particles;lastTime;rafId;boundUpdate;static sharedEngine=null;constructor(){this.renderer=new d,this.particles=[],this.boundUpdate=this.update.bind(this),this.lastTime=0,this.rafId=window.requestAnimationFrame(this.boundUpdate)}update(t){let i=this.lastTime?Math.min((t-this.lastTime)/1e3,.064):0;if(this.lastTime=t,this.particles.length===0){this.cleanup();return}this.renderer.clear();let r=0,a=Math.pow(.98,i*60);for(let o=0;o<this.particles.length;o++)this.particles[o].update(i,a),this.particles[o].cull(this.renderer)||(this.particles[o].draw(this.renderer),this.particles[r++]=this.particles[o]);this.particles.length=r,this.rafId=window.requestAnimationFrame(this.boundUpdate)}cleanup(){this.rafId&&window.cancelAnimationFrame(this.rafId),this.renderer.cleanup(),n.sharedEngine=null}trigger(t){for(let i=0;i<t.count;i++)this.particles.push(new c(t))}static acquire(){return n.sharedEngine||(n.sharedEngine=new n),n.sharedEngine}};function l(n={}){let t=h.init(n);p.acquire().trigger(t)}window.confetti=l;})();
+
+      /* "Folding" engine; here's where shit gets gnarly... */
+      const COLORS = { R: paperFront, W: paperRear };
+
+      const side = (L, p) => L[0] * p[0] + L[1] * p[1] + L[2];
+
+      function lineEq(p0, p1) {
+        let a = -(p1[1] - p0[1]);
+        let b = p1[0] - p0[0];
+        const n = Math.hypot(a, b);
+        a /= n;
+        b /= n;
+        return [a, b, -(a * p0[0] + b * p0[1])];
+      }
+
+      // Keep the part of a convex polygon where sgn * side(L, p) >= 0.
+      function clipPoly(poly, L, sgn) {
+        const out = [];
+        for (let i = 0; i < poly.length; i++) {
+          const A = poly[i];
+          const B = poly[(i + 1) % poly.length];
+          const sa = sgn * side(L, A);
+          const sb = sgn * side(L, B);
+          if (sa >= -1e-9) out.push(A);
+          if ((sa > 1e-9 && sb < -1e-9) || (sa < -1e-9 && sb > 1e-9)) {
+            const t = sa / (sa - sb);
+            out.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
+          }
+        }
+        return out;
+      }
+
+      function polyArea(poly) {
+        let s = 0;
+        for (let i = 0; i < poly.length; i++) {
+          const A = poly[i];
+          const B = poly[(i + 1) % poly.length];
+          s += A[0] * B[1] - B[0] * A[1];
+        }
+        return Math.abs(s / 2);
+      }
+
+      function reflectPoint(L, p) {
+        const d = side(L, p);
+        return [p[0] - 2 * d * L[0], p[1] - 2 * d * L[1]];
+      }
+
+      function mapLayer(layer, f, swapFaces) {
+        return {
+          ...layer,
+          poly: layer.poly.map(f),
+          creases: layer.creases.map((c) => c.map(f)),
+          front: swapFaces ? layer.back : layer.front,
+          back: swapFaces ? layer.front : layer.back,
+        };
+      }
+
+      function clipLayer(layer, L, sgn) {
+        const poly = clipPoly(layer.poly, L, sgn);
+        if (poly.length < 3 || polyArea(poly) < 1e-6) return null;
+        return { ...layer, poly };
+      }
+
+      let foldCounter = 0;
+
+      /* Fold the part of the paper on the same side of `line` as `from`
+         over the top, onto the rest.
+         pick(layer, i): which layers take part (default: all)
+         lift(layer, i): layers that stay put but are kept above the fold */
+      function doFold(state, line, from, pick, lift) {
+        const id = ++foldCounter;
+        const L = lineEq(line[0], line[1]);
+        const sgn = side(L, from) >= 0 ? 1 : -1;
+        const stay = [];
+        const moving = [];
+        const lifted = [];
+        state.forEach((layer, i) => {
+          if (lift && lift(layer, i)) {
+            lifted.push(layer);
+            return;
+          }
+          if (pick && !pick(layer, i)) {
+            stay.push(layer);
+            return;
+          }
+          const s = clipLayer(layer, L, -sgn);
+          const m = clipLayer(layer, L, sgn);
+          if (s && m) {
+            s.cutId = id;
+            m.cutId = id;
+          }
+          if (s) stay.push(s);
+          if (m) moving.push(m);
+        });
+        const reflect = (p) => reflectPoint(L, p);
+        // Turning the stack over reverses its order.
+        const folded = moving.map((m) => mapLayer(m, reflect, true)).reverse();
+        return {
+          id, L, line, from, pick, stay, moving, lifted,
+          before: state,
+          after: [...stay, ...folded, ...lifted],
+        };
+      }
+
+      const flipLayers = (state) =>
+        state.map((l) => mapLayer(l, (p) => [-p[0], p[1]], true)).reverse();
+
+      const rotateLayers = (state) => state.map((l) => mapLayer(l, (p) => [-p[1], p[0]], false));
+
+      // The state before a fold, with the fold's crease added.
+      function withCrease(r) {
+        const [p0, p1] = r.line;
+        const dx = p1[0] - p0[0];
+        const dy = p1[1] - p0[1];
+        const n = Math.hypot(dx, dy);
+        const seg = [
+          [p0[0] - (4 * dx) / n, p0[1] - (4 * dy) / n],
+          [p0[0] + (4 * dx) / n, p0[1] + (4 * dy) / n],
+        ];
+        return r.before.map((l, i) =>
+          !r.pick || r.pick(l, i) ? { ...l, creases: [...l.creases, seg] } : l
+        );
+      }
+
+      /* Shapes and steps; oh god this got super complicated */
+      const SQUARE = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+      const HEART = [
+        [0, 0.5], [-0.5, 0], [-0.5, -0.25], [-0.325, -0.425], [-0.175, -0.425], [0, -0.25],
+        [0.175, -0.425], [0.325, -0.425], [0.5, -0.25], [0.5, 0],
+      ];
+
+      const stages = [];
+      let cur = [{ poly: SQUARE, front: "R", back: "W", creases: [] }];
+
+      const FLIP_GUIDE = { from: [-1.25, 0], to: [1.25, 0] };
+
+      function addFlip(text) {
+        const before = cur;
+        cur = flipLayers(cur);
+        stages.push({ kind: "flip", text, ...FLIP_GUIDE, before, after: cur });
+      }
+
+      function addRotate(text) {
+        const before = cur;
+        cur = rotateLayers(cur);
+        stages.push({ kind: "rotate", text, from: [0, -1], to: [1, 0], before, after: cur });
+      }
+
+      function addFold(text, line, from, to, pick, lift) {
+        const r = doFold(cur, line, from, pick, lift);
+        stages.push({ kind: "fold", text, from, to, fold: r, before: cur, after: r.after });
+        cur = r.after;
+        return r;
+      }
+
+      function addUnfold(text, r, from, to) {
+        // debugger
+        cur = withCrease(r);
+        stages.push({ kind: "unfold", text, from: to, to: from, fold: r, after: cur });
+      }
+
+      const left = (l) => l.poly.every((p) => p[0] <= 1e-6);
+      const right = (l) => l.poly.every((p) => p[0] >= -1e-6);
+      const VERTICAL = [[0, -1], [0, 1]];
+
+      addFlip('Flip it');
+      let r = addFold('Fold it', VERTICAL, [1, 0], [-1, 0]);
+      addUnfold('Unfold it', r, [1, 0], [-1, 0]);
+      addRotate('Turn it');
+      r = addFold('Fold it', VERTICAL, [1, 0], [-1, 0]);
+      addUnfold('Unfold it', r, [1, 0], [-1, 0]);
+
+      addFold('Fold it', [[-1, 0.5], [1, 0.5]], [0, 1], [0, 0]);
+      addFlip('Flip it');
+      addFold('Fold it', [[0, 0.5], [-1, -0.5]], [-1, 0.5], [0, -0.5]);
+      addFold('Fold it', [[0, 0.5], [1, -0.5]], [1, 0.5], [0, -0.5]);
+      addFlip('Flip it');
+
+      addFold('Fold it', [[0, -1], [-1, 0]], [-1, -1], [0, 0]);
+      addFold('Fold it', [[0, -1], [1, 0]], [1, -1], [0, 0]);
+      addFold(
+        'Fold it (carefully!)',
+        [[-1, -0.25], [1, -0.25]], [0, -1], [0, 0.5],
+        (l, i) => [4, 6, 8].includes(i),
+        (l, i) => [7, 9].includes(i)
+      );
+      addFold('Fold it', [[-0.5, -1], [-0.5, 1]], [-0.75, -0.25], [-0.25, -0.25]);
+      addFold('Fold it', [[0.5, -1], [0.5, 1]], [0.75, -0.25], [0.25, -0.25]);
+
+      // These small folds (steps 17-22) get half-size guide circles:
+      const firstSmallGuide = stages.length;
+      addFold('Fold it', [[-0.25, -0.5], [-0.5, -0.25]], [-0.5, -0.5], [-0.25, -0.25], left);
+      addFold('Fold it', [[-0.25, -0.5], [0, -0.25]], [0, -0.5], [-0.25, -0.25], left);
+      addFold('Fold it', [[0.25, -0.5], [0.5, -0.25]], [0.5, -0.5], [0.25, -0.25], right);
+      addFold('Fold it', [[0.25, -0.5], [0, -0.25]], [0, -0.5], [0.25, -0.25], right);
+
+      // These (steps 21-22) don't show the guide arrow:
+      const firstNoArrow = stages.length;
+      addFold('Fold it', [[-1, -0.425], [1, -0.425]], [-0.25, -0.5], [-0.25, -0.35], left);
+      addFold('Fold it', [[-1, -0.425], [1, -0.425]], [0.25, -0.5], [0.25, -0.35], right);
+      for (const s of stages.slice(firstSmallGuide)) s.guideScale = 0.5;
+      for (const s of stages.slice(firstNoArrow)) s.hideArrow = true;
+
+      // Switch to the "heart" stage to conceal the 'layers' after the final flip:
+      stages.push({
+        kind: 'flip',
+        text: 'Flip it',
+        ...FLIP_GUIDE,
+        before: [{ poly: HEART, front: null, back: "R", creases: [] }, ...cur],
+        after: [{ poly: HEART, front: "R", back: "R", creases: [] }],
+      });
+
+      /* Rendering */
+
+      const sheet = document.getElementById("sheet");
+      let folder = null; // the element that rotates, for fold/unfold stages
+
+      const pct = (v) => ((v + 1) / 2) * 100;
+
+      function faceEl(layer, back, z, hingeFold) {
+        const colour = back ? layer.back : layer.front;
+        if (!colour) return null;
+        const m = back ? (p) => [-p[0], p[1]] : (p) => p;
+        const poly = layer.poly.map(m);
+        const el = document.createElement("div");
+        el.className = "face";
+        el.style.background = COLORS[colour];
+        el.style.clipPath =
+          "polygon(" + poly.map((p) => pct(p[0]) + "% " + pct(p[1]) + "%").join(",") + ")";
+        el.style.transform = `translateZ(${z}px)` + (back ? " rotateY(180deg)" : "");
+
+        let svg = "";
+        const line = (a, b, cls) =>
+          `<line class="${cls}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
+        // console.log(line)
+        for (let i = 0; i < poly.length; i++) {
+          const a = layer.poly[i];
+          const b = layer.poly[(i + 1) % poly.length];
+          const onHinge =
+            hingeFold &&
+            layer.cutId === hingeFold.id &&
+            Math.abs(side(hingeFold.L, a)) < 1e-6 &&
+            Math.abs(side(hingeFold.L, b)) < 1e-6;
+          svg += line(m(a), m(b), onHinge ? "hinge-edge" : "edge");
+        }
+        for (const c of layer.creases) svg += line(m(c[0]), m(c[1]), "crease");
+        el.innerHTML = `<svg viewBox="-1 -1 2 2" preserveAspectRatio="none">${svg}</svg>`;
+        return el;
+      }
+
+      function planeEl(layers, zBase, zStep, hingeFold) {
+        const plane = document.createElement("div");
+        plane.className = "plane";
+        layers.forEach((layer, i) => {
+          const z = zBase + i * zStep;
+          for (const back of [false, true]) {
+            const f = faceEl(layer, back, z, hingeFold);
+            if (f) plane.appendChild(f);
+          }
+        });
+        return plane;
+      }
+
+      function buildStage(stage) {
+        sheet.innerHTML = "";
+        for (const old of sheet.parentNode.querySelectorAll(".overlay")) old.remove();
+        sheet.removeAttribute("style");
+        folder = null;
+
+        if (stage.kind !== "fold" && stage.kind !== "unfold") {
+          sheet.appendChild(planeEl(stage.before, 0, 1));
+          return;
+        }
+
+        const r = stage.fold;
+        const n = r.stay.length;
+        const m = r.moving.length;
+        const hingeFold = r;
+        sheet.appendChild(planeEl(r.stay, 0, 1, hingeFold));
+
+        // Hinge group: positioned on the fold line, turned so that the line is
+        // its x axis and the moving paper is on its +y side.
+        const [p0, p1] = r.line;
+        let angle = Math.atan2(p1[1] - p0[1], p1[0] - p0[0]);
+        let cx = 0;
+        let cy = 0;
+        let count = 0;
+        for (const layer of r.moving) {
+          for (const p of layer.poly) {
+            cx += p[0];
+            cy += p[1];
+            count++;
+          }
+        }
+        cx = cx / count - p0[0];
+        cy = cy / count - p0[1];
+        if (cx * -Math.sin(angle) + cy * Math.cos(angle) < 0) angle += Math.PI;
+
+        const hinge = document.createElement("div");
+        hinge.className = "hinge";
+        hinge.style.left = pct(p0[0]) + "%";
+        hinge.style.top = pct(p0[1]) + "%";
+        hinge.style.transform = `translateZ(${n + m + 1}px) rotate(${angle}rad)`;
+
+        folder = document.createElement("div");
+        folder.className = "folder";
+        const carrier = document.createElement("div");
+        carrier.className = "carrier";
+        carrier.style.transform = `rotate(${-angle}rad)`;
+        const plane = planeEl(r.moving, 0, 1, hingeFold);
+        plane.style.left = `calc(var(--size) * ${-pct(p0[0]) / 100})`;
+        plane.style.top = `calc(var(--size) * ${-pct(p0[1]) / 100})`;
+
+        carrier.appendChild(plane);
+        folder.appendChild(carrier);
+        hinge.appendChild(folder);
+        sheet.appendChild(hinge);
+
+        if (r.lifted.length) {
+          // Lifted layers sit outside the 3D context, so the moving flap
+          // always passes underneath them.
+          const overlay = planeEl(r.lifted, 0, 0, hingeFold);
+          overlay.classList.add("overlay");
+          sheet.parentNode.appendChild(overlay);
+        }
+      }
+
+      function applyProgress(stage, p) {
+        const s = sheet.style;
+        // console.log('ss:', s)
+        switch (stage.kind) {
+          case "flip":
+            s.setProperty("--flip", 180 * p + "deg");
+            break;
+          case "rotate":
+            s.setProperty("--rot", 90 * p + "deg");
+            break;
+          case "fold":
+            s.setProperty("--fold", p);
+            s.setProperty("--hinge", Math.min(1, p * 6));
+            break;
+          case "unfold":
+            s.setProperty("--fold", 1 - p);
+            s.setProperty("--hinge", 1);
+            break;
+        }
+      }
+
+      /* Interactions and animations */
+
+      const paperSize = () => sheet.offsetWidth;
+      const toPx = ([x, y]) => [
+        window.innerWidth / 2 + (x * paperSize()) / 2,
+        window.innerHeight / 2 + (y * paperSize()) / 2,
+      ];
+
+      function fireTheConfettiCannon(){
+        confettiBuildup = 0;
+        confettiFrequency = confettiFrequency * 1.05; // gradually slow it down!
+        confetti({
+          count:     10,
+          size:       3,
+          velocity: 400,
+          position: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+          color: [paperFront, paperFront, paperRear],
+          upwardness: 1,
+        });
+      }
+
+      function armTheConfettiCannon(timestamp){
+        confettiBuildup += timestamp;
+        if(confettiBuildup >= confettiFrequency) fireTheConfettiCannon();
+        confettiRaf = requestAnimationFrame(armTheConfettiCannon);
+      }
+
+      function disarmTheConfettiCannon(){
+        cancelAnimationFrame(confettiRaf);
+        confettiRaf = 0;
+        confettiFrequency = confettiInitialFrequency;
+        confettiBuildup = confettiFrequency;
+      }
+
+      // Step 23's flip guide would be pushed off-screen by the zoom, so it
+      // uses fixed viewport coordinates instead.
+      function guideEnds(stage) {
+        if (stage === stages[stages.length - 1]) {
+          const cy = window.innerHeight / 2;
+          return [[window.innerWidth * 0.2, cy], [window.innerWidth * 0.8, cy]];
+        }
+        return [toPx(stage.from), toPx(stage.to)];
+      }
+
+      function layoutGuide() {
+        const stage = stages[index];
+        if (!stage) {
+          guide.classList.add('hidden');
+          return;
+        }
+        guide.classList.remove('hidden');
+        const [[x1, y1], [x2, y2]] = guideEnds(stage);
+        const baseR = Math.max(24, paperSize() * 0.05);
+        const r = baseR * (stage.guideScale ?? 1);
+        gFinger.setAttribute('r', r);
+        // Start and stop the line ALMOST at the edges of their respective circles
+        const lineStartOffset = 12;
+        const arrowheadOffset = 9;
+        const len = Math.hypot(x2 - x1, y2 - y1);
+        const ok = len > 2 * r + arrowheadOffset;
+        const k1 = ok ? (r + lineStartOffset) / len : 0;
+        const k2 = ok ? (len - r - arrowheadOffset) / len : 0;
+        gLine.setAttribute('x1', x1 + (x2 - x1) * k1);
+        gLine.setAttribute('y1', y1 + (y2 - y1) * k1);
+        gLine.setAttribute('x2', x1 + (x2 - x1) * k2);
+        gLine.setAttribute('y2', y1 + (y2 - y1) * k2);
+        gLine.style.display = stage.hideArrow ? 'none' : '';
+        for (const [el, x, y] of [[gStart, x1, y1], [gEnd, x2, y2]]) {
+          el.setAttribute('cx', x);
+          el.setAttribute('cy', y);
+          el.setAttribute('r', r);
+        }
+      }
+
+      const stageEl = document.querySelector('.stage');
+
+      function trackGuide() {
+        const t0 = performance.now();
+        const tick = (now) => {
+          layoutGuide();
+          if (now - t0 < 1100) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+
+      function showStage() {
+        sheet.style.transform = "";
+        sheet.style.cursor = "";
+        view.x = view.y = 0;
+        history.replaceState(
+          null,
+          "",
+          stages[index] ? `#step=${index + 1}` : location.pathname + location.search,
+        );
+
+        const zoomed = index >= 14; // step 14 (index 13) is complete - we "zoom" in here 'cos the paper's smaller!
+        if (zoomed !== stageEl.classList.contains("zoomed")) {
+          stageEl.classList.toggle("zoomed", zoomed);
+          trackGuide();
+        }
+
+        const stage = stages[index];
+        const cStages = stages.length;
+        if (stage) {
+          buildStage(stage);
+          applyProgress(stage, 0);
+          instruction.innerHTML = `
+            <ul role="progressbar" aria-label="Step ${index + 1} of ${stages.length}">
+              ${Array(cStages).fill().map((_,i)=>`
+                <li class="${(index < i) ? 'future' : (index == i) ? 'current' : 'done'}"></li>
+              `).join('')}
+            </ul>
+            <p>${stage.text}</p>
+          `;
+        } else {
+          sheet.innerHTML = "";
+          sheet.appendChild(planeEl(stages[stages.length - 1].after, 0, 1));
+          sheet.style.cursor = "grab";
+          if (!confettiRaf) confettiRaf = requestAnimationFrame(armTheConfettiCannon);
+          instruction.innerHTML =
+            "<p>❤️ Thanks for joining me for this origami! ❤️<br><button id=\"restart\">Start again</button></p>";
+          document.getElementById("restart").onclick = () => {
+            disarmTheConfettiCannon();
+            index = 0;
+            progress = 0;
+            showStage();
+          };
+        }
+        layoutGuide();
+      }
+
+      function animateTo(target) {
+        animating = true;
+        const stage = stages[index];
+        const startP = progress;
+        const duration = 100 + 350 * Math.abs(target - startP);
+        const t0 = performance.now();
+        function frame(now) {
+          const t = Math.min(1, (now - t0) / duration);
+          const eased = 1 - (1 - t) * (1 - t);
+          progress = startP + (target - startP) * eased;
+          applyProgress(stage, progress);
+          if (t < 1) return requestAnimationFrame(frame);
+          animating = false;
+          if (target === 1) {
+            index++;
+            progress = 0;
+            showStage();
+          }
+        }
+        requestAnimationFrame(frame);
+      }
+
+      function projected(e) {
+        const stage = stages[index];
+        const [[x1, y1], [x2, y2]] = guideEnds(stage);
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const p = ((e.clientX - x1) * dx + (e.clientY - y1) * dy) / (dx * dx + dy * dy);
+        return Math.max(0, Math.min(1, p));
+      }
+
+      function moveFinger(e) {
+        gFinger.setAttribute("cx", e.clientX);
+        gFinger.setAttribute("cy", e.clientY);
+      }
+
+      window.addEventListener("pointerdown", (e) => {
+        const stage = stages[index];
+        if (!stage || animating || e.target.closest("button")) return;
+        const [[x1, y1]] = guideEnds(stage);
+        const hit = Math.max(40, paperSize() * 0.08);
+        if (Math.hypot(e.clientX - x1, e.clientY - y1) > hit) return;
+        dragging = true;
+        guide.classList.add("dragging");
+        gFinger.style.display = "";
+        moveFinger(e);
+      });
+
+      window.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+        progress = projected(e);
+        applyProgress(stages[index], progress);
+        moveFinger(e);
+      });
+
+      function release() {
+        if (!dragging) return;
+        dragging = false;
+        guide.classList.remove("dragging");
+        gFinger.style.display = "none";
+        animateTo(progress >= 0.5 ? 1 : 0);
+      }
+      window.addEventListener("pointerup", release);
+      window.addEventListener("pointercancel", release);
+      window.addEventListener("resize", layoutGuide);
+
+      window.addEventListener("keydown", (e) => {
+        if (e.code !== "Space" || e.repeat || !stages[index] || animating) return;
+        e.preventDefault();
+        if (dragging) {
+          dragging = false;
+          guide.classList.remove("dragging");
+          gFinger.style.display = "none";
+        }
+        animateTo(1);
+      });
+
+      const view = { x: 0, y: 0 }; // finale orientation (degrees about X / Y)
+      let orbit = null;
+      const applyView = () => {
+        sheet.style.transform = `rotateX(${view.x}deg) rotateY(${view.y}deg)`;
+      };
+
+      window.addEventListener("pointerdown", (e) => {
+        if (stages[index] || e.target.closest("button")) return;
+        orbit = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y };
+        sheet.style.cursor = "grabbing";
+      });
+      window.addEventListener("pointermove", (e) => {
+        if (!orbit) return;
+        view.y = orbit.vy + (e.clientX - orbit.x) * 0.5;
+        view.x = orbit.vx - (e.clientY - orbit.y) * 0.5;
+        applyView();
+      });
+      const endOrbit = () => {
+        orbit = null;
+        if (!stages[index]) sheet.style.cursor = "grab";
+      };
+      window.addEventListener("pointerup", endOrbit);
+      window.addEventListener("pointercancel", endOrbit);
+
+      // Resume from #step=N (also a debug aid: #step=14&p=0.5 jumps part-way through).
+      const params = new URLSearchParams(location.hash.slice(1));
+      if (params.has("step")) {
+        index = Math.max(0, Math.min(stages.length, +params.get("step") - 1 || 0));
+      }
+      showStage();
+      if (params.has("p") && stages[index]) applyProgress(stages[index], +params.get("p"));
+    </script>
+  </body>
+</html>
