@@ -202,7 +202,8 @@
           stroke-dasharray: 6 6;
         }
 
-        &.hidden {
+        &.hidden,
+        &.completing {
           display: none;
         }
 
@@ -921,11 +922,14 @@
             showStage();
           };
         }
+        guide.classList.remove('completing');
         layoutGuide();
       }
 
       function animateTo(target) {
         animating = true;
+        // Hide the guide while a step finishes; showStage() brings it back for the next one
+        if (target === 1) guide.classList.add('completing');
         const stage = stages[index];
         const startP = progress;
         const duration = 100 + 350 * Math.abs(target - startP);
