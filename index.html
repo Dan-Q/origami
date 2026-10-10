@@ -25,6 +25,10 @@
         box-sizing: border-box;
       }
 
+      html {
+        overflow: hidden;
+      }
+
       @font-face {
         font-family: 'Raleway';
         src: local(''), url('https://bcdn.danq.me/_q26tf/rv.woff2') format('woff2');
@@ -46,6 +50,12 @@
         --paper-front: #d62839;
         --paper-rear: #ffffff;
         --guide-ink-color: #222222;
+        --guide-small-scale: 0.75; /* guide circles/markers are scaled by this on small screens */
+        --guide-scale: 1;
+
+        @media (max-width: 599px), (max-height: 599px) {
+          --guide-scale: var(--guide-small-scale);
+        }
       }
 
       body {
@@ -170,8 +180,8 @@
 
         line {
           stroke: var(--guide-ink-color);
-          stroke-width: 4;
-          stroke-dasharray: 2 10;
+          stroke-width: calc(4px * var(--guide-scale)); /* the arrowhead marker scales with this too */
+          stroke-dasharray: calc(2px * var(--guide-scale)) calc(10px * var(--guide-scale));
           stroke-linecap: round;
         }
 
@@ -186,7 +196,7 @@
         .finger {
           fill: var(--guide-ink-color);
           stroke: var(--guide-ink-color);
-          stroke-width: 3;
+          stroke-width: calc(3px * var(--guide-scale));
           transform-box: fill-box;
           transform-origin: center;
         }
@@ -198,8 +208,8 @@
         .end {
           fill: none;
           stroke: var(--guide-ink-color);
-          stroke-width: 3;
-          stroke-dasharray: 6 6;
+          stroke-width: calc(3px * var(--guide-scale));
+          stroke-dasharray: calc(6px * var(--guide-scale));
         }
 
         &.hidden,
@@ -846,12 +856,13 @@
         }
         guide.classList.remove('hidden');
         const [[x1, y1], [x2, y2]] = guideEnds(stage);
-        const baseR = Math.max(24, paperSize() * 0.05);
+        const screenScale = parseFloat(getComputedStyle(guide).getPropertyValue('--guide-scale')) || 1;
+        const baseR = Math.max(24, paperSize() * 0.05) * screenScale;
         const r = baseR * (stage.guideScale ?? 1);
         gFinger.setAttribute('r', r);
         // Start and stop the line ALMOST at the edges of their respective circles
-        const lineStartOffset = 12;
-        const arrowheadOffset = 9;
+        const lineStartOffset = 12 * screenScale;
+        const arrowheadOffset = 9 * screenScale;
         const len = Math.hypot(x2 - x1, y2 - y1);
         const ok = len > 2 * r + arrowheadOffset;
         const k1 = ok ? (r + lineStartOffset) / len : 0;
