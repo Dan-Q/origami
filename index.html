@@ -358,6 +358,28 @@
         backdrop-filter: blur(4px);
       }
 
+      .p88x31 {
+        text-align: center;
+        display: flex;
+        margin: 0 !important;
+        padding: 0;
+        height: 62px;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          image-rendering: pixelated;
+          cursor: pointer;
+          width: 88px;
+          height: 31px;
+          transition: all 0.25s;
+        }
+
+        &:hover img {
+          width: 176px;
+          height: 62px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -398,6 +420,11 @@
         If you have difficulty with the touch-and-drag/click-and-drag interface, it's also possible to advance through the stages by pressing
         the space bar on your keyboard.
       </p>
+      <div>
+        <p class="p88x31">
+          <img src="88x31.gif" alt="" width="88" height="31">
+        </p>
+      </div>
       <h2>Further reading</h2>
       <p>
         You might like to see:
